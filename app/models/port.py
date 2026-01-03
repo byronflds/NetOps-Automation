@@ -1,6 +1,6 @@
 from app import db
 
-class Port(db.model):
+class Port(db.Model):
     __tablename__ = "ports"
 
     id = db.Column(db.Integer, primary_key=True)
