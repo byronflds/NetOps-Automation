@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+from routes.ports import ports
 
 db = SQLAlchemy()
 
@@ -16,6 +17,7 @@ def create_app():
 
     from .routes.main import main
     app.register_blueprint(main)
+    app.register_blueprint(ports)
 
     return app 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Port Management</title>
+    </head>
+    <body>
+        <h1>Port Management</h1>
+
+        <form method="post">
+            <input name="switch_name" placeholder="Switch Name" />
+            <input name="port_name" placeholder="Port Name" />
+            <select name="status">
+                <option value="">Select status</option>
+                <option value="up">Up</option>
+                <option value="down">Down</option>
+            </select>
+
+            <button type="submit">Add Port</button>
+        </form>
+
+        <h2>Existing Ports</h2>
+        <ul>
+            {% for port in ports %}
+                <li>
+                    {{port.switch_name}} - {{port.port_name}} ({{port.status}})
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
