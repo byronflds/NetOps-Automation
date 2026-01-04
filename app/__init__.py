@@ -1,11 +1,9 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from app.extensions import db
 import logging
 from logging.handlers import RotatingFileHandler
 import os
 from routes.ports import ports
-
-db = SQLAlchemy()
 
 def create_app():
     """Create and configure the Flask application."""
