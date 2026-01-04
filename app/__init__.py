@@ -3,7 +3,7 @@ from app.extensions import db
 import logging
 from logging.handlers import RotatingFileHandler
 import os
-from routes.ports import ports
+from .routes.ports import ports
 
 def create_app():
     """Create and configure the Flask application."""
