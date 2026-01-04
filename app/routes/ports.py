@@ -13,9 +13,12 @@ def manage_ports():
         if not switch_name or not port_name or not status:
             current_app.logger.warning("Port creation failed: missing fields")
             return redirect(url_for("ports.manage_ports"))
-        
-        port = create_port(switch_name, port_name, status)
-        current_app.logger.info(f"Port created: {port}")
+        try:
+            port = create_port(switch_name, port_name, status)
+            current_app.logger.info(f"Port created: {port}")
+        except ValueError as e:
+            current_app.logger.warning(f"Port creation failed: {e}")
+            return render_template("ports.html", error=str(e), ports=get_all_ports())
 
         return redirect(url_for("ports.manage_ports"))
     

@@ -6,6 +6,10 @@
     <body>
         <h1>Port Management</h1>
 
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
         <form method="post">
             <input name="switch_name" placeholder="Switch Name" />
             <input name="port_name" placeholder="Port Name" />
