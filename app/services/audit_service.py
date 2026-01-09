@@ -6,5 +6,5 @@ def log_action(action,details):
         action=action,
         details=details
     )
-db.session.add(entry)
-db.session.commit()
+    db.session.add(entry)
+    db.session.commit()
