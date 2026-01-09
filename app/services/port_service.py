@@ -1,5 +1,6 @@
 from app.extensions import db
 from app.models import Port
+from app.services.audit_service import log_action
 
 def create_port(switch_name, port_name, status, is_uplink=False, vlan_id=None):
 
@@ -20,6 +21,11 @@ def create_port(switch_name, port_name, status, is_uplink=False, vlan_id=None):
 
     db.session.add(port)
     db.session.commit()
+
+    log_action(
+        action="CREATE_PORT",
+        details=f"{switch_name}:{port_name} status={status}"
+    )
 
     return port
 
