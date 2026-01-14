@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billing Adjustment</title>
+</head>
+<body>
+    <h1>Billing Adjustment</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <label>Source Port</label>
+        <select name="source_port">
+            {% for port in ports %}
+                <option value="{{ port.id }}">{{ port.switch_name }} - {{ port.port_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Destination Port</label>
+        <select name="dest_port">
+            {% for port in ports %}
+                <option value="{{ port.id }}">{{ port.switch_name }} - {{ port.port_name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Move Billing</button>
+    </form>
+</body>
+</html>
