@@ -12,4 +12,4 @@ class Port(db.Model):
     billing_account = db.Column(db.String(50), nullable=True)
 
     def __repr__(self):
-        return f"<Port {self.switch_name}:{self.port_name} ({self.status})>"
+        return f"<Port {self.switch_name}:{self.port_name} ({self.status}), Billing: {self.billing_account}>"
