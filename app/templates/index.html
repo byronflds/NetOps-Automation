@@ -8,10 +8,11 @@
 
     <body>
     <h1>NetOps Automation Hub</h1>
-
-    <button>Provision Site</button>
-    <button>Manage Ports</button>
-    <button>Billing Adjustment</button>
+<div class="dashboard-actions">
+        <a href="{{ url_for('sites.create') }}" class="btn">Provision Site</a>
+        <a href="{{ url_for('ports.index') }}" class="btn">Manage Ports</a>
+        <a href="{{ url_for('billing.adjust') }}" class="btn">Billing Adjustment</a>
+    </div>
     </body>
 {% else %}
     <p>You are not logged in.</p>
