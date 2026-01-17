@@ -5,6 +5,14 @@
 
 {% if current_user.is_authenticated %}
     <p>Welcome, {{ current_user.username }}!</p>
+
+    <body>
+    <h1>NetOps Automation Hub</h1>
+
+    <button>Provision Site</button>
+    <button>Manage Ports</button>
+    <button>Billing Adjustment</button>
+    </body>
 {% else %}
     <p>You are not logged in.</p>
 {% endif %}
