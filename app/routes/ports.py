@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, current_app
 from app.services.port_service import create_port, get_all_ports
+from flask_login import login_required, current_user
 
 ports = Blueprint("ports", __name__, url_prefix="/ports")
 

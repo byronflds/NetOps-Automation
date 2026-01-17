@@ -6,6 +6,9 @@ import os
 from .routes.ports import ports
 from .routes.billing import billing
 from app.extensions import login_manager
+from .routes.auth import auth
+
+
 
 def create_app():
     """Create and configure the Flask application."""
@@ -20,6 +23,12 @@ def create_app():
     app.register_blueprint(main)
     app.register_blueprint(ports)
     app.register_blueprint(billing)
+    app.register_blueprint(auth)
+    
+    from app.models.user import User
+    @login_manager.user_loader
+    def load_user(user_id):
+      return User.query.get(int(user_id))
 
     return app 
 
