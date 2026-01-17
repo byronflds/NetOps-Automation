@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>NetOps Automation Hub</title>
-</head>
-<body>
-    <h1>NetOps Automation Hub</h1>
+{% extends "base.html" %}
 
-    <button>Provision Site</button>
-    <a href="/ports/"><button>Manage Ports</button></a>
-    <button>Billing Adjustment</button>
-</body>
-</html>
+{% block content %}
+<h1>NetOps Automation Dashboard</h1>
+
+{% if current_user.is_authenticated %}
+    <p>Welcome, {{ current_user.username }}!</p>
+{% else %}
+    <p>You are not logged in.</p>
+{% endif %}
+
+{% endblock %}
