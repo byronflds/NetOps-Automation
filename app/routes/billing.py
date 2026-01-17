@@ -5,7 +5,10 @@ from app.services.billing_service import move_billing
 billing = Blueprint("billing", __name__, url_prefix="/billing")
 
 @billing.route("/", methods=["GET","POST"])
+@login_required
 def move():
+    if current_user.role != "admin":
+        abort(403)
     if request.method == "POST":
         source_id = request.form.get("source_port")
         dest_id = request.form.get("dest_port")

@@ -4,7 +4,10 @@ from app.services.port_service import create_port, get_all_ports
 ports = Blueprint("ports", __name__, url_prefix="/ports")
 
 @ports.route("/", methods=["GET","POST"])
+@login_required
 def manage_ports():
+    if current_user.role != "admin":
+        abort(403)
     if request.method == "POST":
         switch_name = request.form.get("switch_name")
         port_name = request.form.get("port_name")

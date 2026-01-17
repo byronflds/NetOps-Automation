@@ -5,6 +5,7 @@ from logging.handlers import RotatingFileHandler
 import os
 from .routes.ports import ports
 from .routes.billing import billing
+from app.extensions import login_manager
 
 def create_app():
     """Create and configure the Flask application."""
@@ -13,6 +14,7 @@ def create_app():
     setup_logging(app)
 
     db.init_app(app)
+    login_manager.init_app(app)
 
     from .routes.main import main
     app.register_blueprint(main)
