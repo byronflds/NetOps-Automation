@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from app.extensions import db
 import logging
 from logging.handlers import RotatingFileHandler
@@ -8,7 +8,15 @@ from .routes.billing import billing
 from app.extensions import login_manager
 from .routes.auth import auth
 
+def register_error_handlers(app):
 
+    @app.errorhandler(403)
+    def forbidden(e):
+        return render_template("errors/403.html"), 403
+
+    @app.errorhandler(404)
+    def not_found(e):
+        return render_template("errors/404.html"), 404
 
 def create_app():
     """Create and configure the Flask application."""
@@ -24,6 +32,7 @@ def create_app():
     app.register_blueprint(ports)
     app.register_blueprint(billing)
     app.register_blueprint(auth)
+    register_error_handlers(app)
     
     from app.models.user import User
     @login_manager.user_loader

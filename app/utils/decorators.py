@@ -8,6 +8,9 @@ def admin_required(f):
             abort(401)
         
         if current_user.role != "admin":
+            current_app.logger.warning(
+    f"Unauthorized admin access attempt by user {current_user.username}"
+)
             abort(403)
         
         return f(*args, **kwargs)
