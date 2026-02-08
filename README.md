@@ -26,7 +26,7 @@ Features
 
 - Secure authentication using Flask-Login
 
--Defensive error handling (403 / 404)
+- Defensive error handling (403 / 404)
 
 Security & Safety
 
@@ -53,3 +53,18 @@ Jinja2
 Apache (WSGI)
 
 REST APIs (DNAC / Mist-style integrations)
+
+
+Screenshots
+
+### Login
+![Login](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Port Management
+![Ports](screenshots/ports.png)
+
+### Billing Adjustment
+![Billing](screenshots/billing.png)
