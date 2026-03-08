@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, current_app
 from app.services.port_service import create_port, get_all_ports
 from flask_login import login_required, current_user
+from app.jobs import queue
+from app.jobs.tasks import create_port_job
 
 ports = Blueprint("ports", __name__, url_prefix="/ports")
 
@@ -18,8 +20,8 @@ def manage_ports():
             current_app.logger.warning("Port creation failed: missing fields")
             return redirect(url_for("ports.manage_ports"))
         try:
-            port = create_port(switch_name, port_name, status)
-            current_app.logger.info(f"Port created: {port}")
+            job = queue.enqueue(create_port_job, switch_name, port_name, status)
+            current_app.logger.info(f"Port creation job queued: {job.id} for {switch_name}:{port_name}")
         except ValueError as e:
             current_app.logger.warning(f"Port creation failed: {e}")
             return render_template("ports.html", error=str(e), ports=get_all_ports())
