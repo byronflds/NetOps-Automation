@@ -7,6 +7,7 @@ from .routes.ports import ports
 from .routes.billing import billing
 from app.extensions import login_manager
 from .routes.auth import auth
+from .routes.jobs import jobs
 
 def register_error_handlers(app):
 
@@ -32,6 +33,7 @@ def create_app():
     app.register_blueprint(ports)
     app.register_blueprint(billing)
     app.register_blueprint(auth)
+    app.register_blueprint(jobs)
     register_error_handlers(app)
     
     from app.models.user import User
