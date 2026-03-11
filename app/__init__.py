@@ -5,7 +5,7 @@ from logging.handlers import RotatingFileHandler
 import os
 from .routes.ports import ports
 from .routes.billing import billing
-from app.extensions import login_manager
+from app.extensions import login_manager, db, migrate
 from .routes.auth import auth
 from .routes.jobs import jobs
 
@@ -27,6 +27,7 @@ def create_app():
 
     db.init_app(app)
     login_manager.init_app(app)
+    migrate.init_app(app, db)
 
     from .routes.main import main
     app.register_blueprint(main)
